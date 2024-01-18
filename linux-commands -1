@@ -1,0 +1,59 @@
+pwd-present working directory(it is used to show the current path)
+clear- it is used clear screen
+mkdir- used to create directory(mkdir directory name)
+mkdir -p directory name - it will create the directory in current path
+-p stands for parent directory and will check whether the directory is exist or not.
+If the directory exist it will return true if it does not exist then it will create directory
+mkdir -p path/directory (mkdir -p /home/ubuntu) - it will create directory in specified path
+ls - it is used to list all the files and directory
+ls -l - it is used to show all the files and directory in long list
+ls -lt - used to show recently created files and directory in the top
+ls -lrt - used to show  recently created files and directory in the bottom
+ls stands for long list
+r-reverse
+ls -a - used to show recently created files and directory including hidden files
+cd(change directory) used to change directory or swich one path to another path cd path name 
+cd .. - to come out of one level directory
+cd ../.. - to come out of 2 level directory
+touch - it is used to create empty files
+touch file name: it will create file in pwd path
+touch path/file name - create file in specified path
+Vi- editior which is used create file if not created and to edit files
+Esc i - move into the insert mode we can add content only in insert mode
+Esc: wq-write and quit
+Esc :wq!-write and quite forcefully
+Esc: q!-quite forcefully
+Esc :set nu(:set number) - used to set the line numbers
+Esc :set nonu-to remove the line number
+Esc dd -delete the line
+Esc u - undo the changes
+Esc /pattern- search the pattern, press n to move next pattern
+Esc :3s/class/school/g- it will replace the pattern class by school in 3rd line
+Esc :3,5s/class/school/g - it will replace the pattern line 3 to line 5
+Esc :3,$s/class/school - it will replace the pattern from line 3 to end of the file
+Esc $s/class/school/g - it will replace only in last line of file
+Esc : line number- to move specific line
+Esc :5-7d- to remove line from 5 to 7 in file
+Esc :5d- to remove line 5
+Esc :%s/class/school/g- replace pattern class by school in all the lines of file
+Esc :s/class/school/g-replace patter class by school in current line of file
+cat - to print the content of file
+du(disk usage) it is used to display the size of the file
+du -sh * - du-disk usage s-size h-human readable format-it will display size of all the files in the current directory
+du -sh filename- size of the specified file
+df -disk free-used to check the size of disk drives
+df - h - display size of all the drives
+df -h .- display current drive
+mv -used to move file or directory from one path to another path and also it is used for rename file or directory
+mv /home/ubuntu/f1  /home/ubuntu/f1.txt -rename file
+mv /home/ubuntu/dir  /home/ubuntu/test1/dir -move the directory from path /home/ubuntu to the path /home/ubuntu/trst1
+rm-used to remove the files or directory
+rm filename- it will delete file
+rm -rf dir name- r-recursive f-forcefully- it will delete the directory with sub dir or file
+cp -used to copy the content of file
+cp /home/ubuntu/f1 /home/ubuntu/test1 - it will copy file f1 to the path /home/ubutn/test1 with name f1
+cp /home/ubuntu/f1  /home/ubuntu/test1/f1.txt - copy file f1 to the path /home/ubuntu/test1 with the name f1.txt
+cp -R /home/ubuntu/day1  /home/ubuntu/test1/  - copy the directory day1 to the path /home/ubuntu/test1
+cp /home/ubuntu/f3 /home/ubuntu/f6- since we are copying file in same path if f6 file already exist then it will over write.if it does not exist then it will create duplicate file with name f6
+
+
