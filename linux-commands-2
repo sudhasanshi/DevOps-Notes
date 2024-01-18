@@ -1,0 +1,139 @@
+	chmod-change mode-it is used to change permission of file or directory
+	syntax-chmod permission value filename
+	syntax-chmod -R permission value directory name
+	chown-change owner
+	syntax-chown username:groupname filename - it will change both user and group name of file
+	syntax-chown -R username:groupname dir name -  it will change both user and group name of dir name
+	chown root:root filename
+	chown :ubuntu filename
+	chown ubuntu filename
+sudo - used to execute file as a root user
+Head 
+head is command used to display first n number of lines from files 
+syntax head filename-display first 10 lines
+             head -5 filename -display first 5 lines
+             head -1 filename - display first line
+     head -14 filename-display first 14 lines of file
+
+Tail
+tail is command used to display last n number of line from file
+syntax tail filename - display last 10 lines of file
+ tail -1 filename - display last line of file
+tail -3 filename -display last 3 lines of file
+tail -7 filename -display last 7 lines of file
+
+Extract first 5 lines 
+From this output extract last line
+
+head -5 filename |tail -1
+
+Extract 7-10
+First 10 line
+head -10 filename | tail -4
+
+
+Pipe-it is used to pass the output of one command as an input to the next command
+
+Examples
+Need to display 7th line
+Head -7 filename | tail -1
+Need to display from line 16 to 19 line
+Head -19 filename | tail -4
+
+Redirect command(>) - used to write the output of one command to a file.
+If file already exist then it will over write otherwise it will create new file and copy
+Ls -lrt > filename
+
+Append(>>) -used to append the output of command to the file
+Ls -lrt>> filename
+If file exist it will append the output to the file otherwise it will create new file and write the output
+
+Write command to write the 7th line of file to new file
+Head -7 filename | tail -1 >> new filename
+
+wc-word count -used to count the number of lines, words and characters of file
+  wc filename - display number of line, number  of words and number character
+ wc -l filename - display number of lines
+wc -w filename -display number of words
+wc -c filename - display number of characters
+
+
+Example - how to count number of characters in 19th line of file
+Head -19 filename | tail -1 | wc -c
+
+Example - how to count number of words in 22 line of file and store in new file
+
+Head -22 filename | tail -1 | wc -w > new filename
+
+
+Assignment
+1.To count number of words in 35th line of file and store in new file
+2.To count the number of characters in 62nd line of file and append to the existing file
+
+
+Head -35 filename | tail -1| wc -w >new filename
+Head -62 filename | tail -1 | wc -c >> existing filename
+
+grep -used to search the pattern in a file
+Syntax: grep pattern filename
+Example: grep "perm" filename - display line which contain the specific pattern. It is case sensitive.
+Example : grep -I "perm" filename - display the line which contain the pattern. It will ignore case(I -case insensitive)
+Example  :grep -I -w "perm" filename - display the line which contain specific word perm 
+Example   :grep -c  "perm" filename - it will count number of line which contain the pattern
+Example   : grep -c -w "perm" filename - it will count the number of lines which contain specific word
+
+
+Example    grep -e "perm" filename - we call this egrep which is used to search multiple patterns
+grep -r "perm" * - it will search the pattern both in current dir and sub dir. It will display the filename along with line which contain the pattern
+grep -rl "perm" * - it will list all the files which contain pattern from both current dir and sub dir
+grep -l "perm" * - it will list all the file which contain pattern only from current dir
+grep  "^$" filename - it will display empty line
+grep -c "^$" filename - it will count number of empty lines
+grep -I "^hi" filename - it will display the line which starts with pattern "hi"
+grep -I "hi$" filename - it will display the line which ends with pattern "hi"
+grep -v "perm" filename - it will display all the lines which does not contain "perm"
+grep -v -n "pern" filename - it will display all the lines which does not contain "perm" along with line numbers
+
+sed(stream editor) used to perform 1.replace a string by another string 2. delete line from file 3. Display the specific line
+s- substitute
+
+sed 's/linux/windows/g' filename - it will replace string linux by windows only in console output-not in file 
+sed -i 's/linux/windows/g' filename - it will replace string linux by windows  in file 
+sed -i 's/linux/windows/Ig' filename - it is case insensitive- it will replace the string irrespective of cases
+sed -i '5s/linux/windows/g' filename- it will replace the pattern in 5th line of file
+sed -i'3,6s/linux/windows/g' filename - it will replace the pattern from line 3 to 6 in file
+sed -i '$s/linux/windows/g' filename -it will replace the pattern in last line
+sed -i 's/linux//g' filename - it will delete the string "linux" in file
+sed -e 's/linux/windows/g' -e  's/ubuntu/redhat/g' filename - to replace multiple patterns in line
+
+2. delete line from file
+
+sed -i '/linux/d' filename- it will delete the line which contain the pattern linux
+sed -i '2d' filename - it will delete the 2nd line from file
+sed -i '2,5d' filename - it will delete line 2 to 5 from file
+sed -i '2d;5d' filename - it will delete line 2 and 5th line from file
+sed -i '/^$/d' filename - it will delete the empty lines from file
+
+
+3. Display the specific line
+
+sed -n '3p' filename - it will print 3rd line of file
+sed -n '3,5p' filename - it will print from line 3 to line 5
+sed -n 3p;5p filename - it will print 3rd line and 5th line
+sed -n $p filename - it will print last line of file
+
+Cut is used to display the content of file in column wise
+
+cut -d " " -f2 filename - -d- delimiter -used to separate column f stands for filed - it will print the 2nd column of file
+cut -d " " -f1,3 filename - it will display column 1 and column 3
+cut -d " " -f1-3 filename - it will display from column 1 to column 3
+
+
+
+
+
+
+
+
+
+
