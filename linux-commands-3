@@ -1,0 +1,216 @@
+Find - used to find the location of file or dir,bydefault find is recursive function it will search in both current dir and sub dir
+syntax - find . -name filename - it will search the location for file/dir within the current dir
+.-will seach in current dir
+/- it will search in whole system
+path(/home/ubuntu) - it will search in specific path
+find . -iname filename - it will search location of file or dir irrespective of cases
+find . -type f -iname filename - it will search for specific file
+find . -type d -iname filename - it will search for specific dir 
+find. -type f -mtime +90 -  it will display all the files which was modified 90 day ago
+find . -type f -mtime -90 - it will display all the files which was modified within 90 days
+find . -type f -mmin -10 - it will display all the files which was modified within 10 mins
+find . -type f -mmin +10 - it will display all the files which was modified 10 mins ago
+find . -type f -perm 077 -  it will display all the files with this permission  value
+find . -type f - empty - it will display all the empty files
+find . -type f -size +2M - used to display files which have size 2 mb
+
+Question -- find the files which are modified 3 months ago and delete all the files
+find . -type f -mtime +90 |xargs rm -rf
+
+xargs- it is used to pass the output of one command  as sequence for next command
+
+find . -maxdepth 1 -type f -iname f1 - it will restrict the file to search in current dir and in one sub dir
+find . -maxdepth 2 -type f -iname f1 - it will restrict the file to search in current dir  and in level sub dir
+
+
+awk is more powerful command. It can be used for multiple purpose such as displaying file content in column wise and row wise.
+By default " " space will be considered as delimiter
+
+Syntax:
+awk -F " " '{print $3}' filename -it will print column 3 of file
+awk -F " " '{print $3,$5}' filename - it will print the column 3 and 5
+awk -F " " '{print $NF}' filename - it will print last column of file
+awk -F " " '{print $(NF-1)}' filename  - it will print last but one column
+awk -F " " '{print $(NF-2)}' filename - it will print last 2 column
+awk -F " " '{print $0}' filename - full content of file
+awk -F " " NR==3 '{print $2}' filename - it will print 2nd column from 3rd row
+awk -F " " NR==3,NR==5 '{print $2}' filename - it will print 2nd column from line 3 to 5
+awk -F " " NR==3||NR==5 '{print $2}' filename - it will print 2nd column from line 3 and line 5
+How to check system memory - free 
+free -it will display in bytes
+free -m- it will display in mega bytes
+free -g-it will display in giga bytes
+How to check server name or hostname - hostname
+echo-used to display statement on console
+echo " wellcome to devops class"
+echo -e "welcome \n hello"
+                welcome
+                hello
+Uname -a - version of os
+su-super user/switch user - used to login as another user or root user
+
+Syntax: su - username - switch to specific user
+sudo su - : it will swich to the root user
+sudo(super user does)- used to run the commands with root permission
+sudo chown username:groupname filename
+
+adduser - it is used to create user
+Syntax: adduser username
+
+passwd - it is used to set password to the user
+Syntax: passwd username
+
+userdel username - delete user
+
+How do you remove the password for use
+passwd -d username
+
+UMASK
+
+umask is to set default permission for the file and dir
+umask 000 - full permission newly created file
+
+Example1- need to set read write for user read write for group read write for others
+777-666=111
+umask 111
+touch filename
+
+Example2-need to set read write for user read for group read for others
+777-644=133
+umask 133
+touch filename / mkdir dirname
+
+	1. How do you check from how long system is up and running
+	 uptime
+	Using uptime we display load average for the past 1min,5min,15min
+	
+	2. How do you check remote servers are up and running
+	ping server name or IP address
+	
+	3. How do you check which process is taking more cpu usage
+	top or htop - whichever the process was displayed on 1st row. It will use more cpu usage
+	
+	
+	4 . ps -process status
+	It is a command used to check current process running on system in background
+	
+	ps -ef - print all the process with more detailed output
+	
+	ps  -e - print all the process within system 
+	ps- print all the process of current user and terminal
+	
+	4. How do you check whether specific process running or not
+	ps -ef | grep -i "process name"
+	
+	5. How do you list process started by specific user
+	ps -u username
+	ps -u ubuntu
+	
+	KILL - used to stop the process forcefully
+	Kill -9  process id(pid)
+	
+	
+	Gracefull stop 
+	
+	sudo systemctl stop servicename/processname - stop service
+	
+	sudo systemctl start service name/ processname - start service
+	
+	sudo systemctl statu service name/ processname - check status
+
+Netstat
+Used to check available ports on system & listening(used) ports
+netstat -a -it will display listening and opening ports
+netstat -at -it will display tcp ports
+netstat -au-it will display udp ports
+netstat -l-it will display listening ports
+netstat -lt -it will display tcp listening ports
+
+How to check where all the ports are used or not?
+netstat -atulnp 
+-n indicates it will display active connections, address and port numbers are expressed numerical and no attempt is made to determine name
+-p indicates to check protocols
+
+How do you check whether specific port is used or not?
+netstat - atulnp | grep "port number"
+
+How do you run command/ script in the background
+Using symbol & at the end of command
+Ex: ls &
+
+Nohup(no hang up) : while running script/ command. If execution is stopped due to network issue, once the network is back it will resumes the execution from where it was stopped
+Syntax: nohup ls &
+How to list all the users in server
+awk -F":" '{print $1}' /etc/passwd  or cat /etc/passwd | awk -F":" '{print $0}
+
+who - it will display how many users are logged into server
+
+whoami - it will display current user or to check who is the user
+
+whereis - it will display the source and executable files of command where it is present
+Ex: whereis ls
+
+history - it will display all the previously ran/executed command
+
+Date - it will display current system date and time
+date '+%D' - it will display date in mm/dd/yy
+date '+%d' - it will display only date -07 
+date '+%A' - it will display day(Monday) 
+date '+%a' - it will display day(Mon)
+date '+%M' - it will display minute 
+date '+%h' - it will display month (Dec)
+date '+%H' - it will display month(12)
+date '+%S' - it will display seconds
+date '+%T' - it will display time in 24 hours format
+
+.bashrc file - it is an auto executed file which gets executed automatically as soon as user login into system
+
+Link - it is shortcut of file
+	1. Symbolic link(softlink) - it is ushortcut to a file. If we make any change in original file it will get reflected in link. If the file is deleted then link does not work
+	Syntax: ln -s filename linkname
+	
+	2. Hardlink:it is shortcut to a file. If we delete original file, hardlink will  work because it points inode of file.
+	Inode is memory address for the file
+	
+	Syntax: ln filename linkname
+	
+Password less connection
+In server1 generate the ssh keys(private and public keys) copy the public key and goto server2 paste this public key in authorized_key file under .ssh folder. Next time when we login it will login without password
+
+How do you login remote server
+ssh username@servername  or ssh username@privateipaddress
+
+We can also login using pem file
+ssh -i pemfile username@servername
+
+ssh-keygen
+Used to gererate ssh key(private key and public key) under .ssh folder.
+.ssh folder will be created under default path of user.
+Default path of root - /root
+Default path of ubuntu - /home/ubuntu
+
+SCP
+Used to copy file from one server to another server 
+File : scp /home/ubuntu/filename root@ipaddress : /home/ubuntu
+Dir: scp -r /home/ubuntu/dir name root@ipaddress:/home/ubuntu
+
+Difference between SCP and rsync
+While coping data from one server to another server. If copy stop in between due to some network issue, once the system is back . If I use scp command it will start copying from beginning
+If I use rsync it will start copying from where it was stopped
+
+TELNET
+
+It is used to check whether port number of remote server is available or not?
+It is used to break the firewall 
+Syntax: TELNET servername:portnumber
+
+lsof - list all open files belonging to all active processes
+curl - is  a  tool  for  transferring data from or to a server.
+wget - Wget is a free utility for non-interactive download of files from the Web. 
+
+tar - an archiving utility archiving program designed to store multiple files in a single file
+
+
+
+
+
